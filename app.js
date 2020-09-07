@@ -5,5 +5,5 @@ const binanceWS = new api.BinanceWS(true); // Argument specifies whether the res
 binanceWS.onKline("BTCUSDT", "1m", (data) => {
   console.log(data);
   document.getElementById("test1").innerText +=
-    "به ملیون تومان  :" + data.kline.close * 24 + "\n";
+    "به ملیون تومان  :" + data.kline.close * 0.024 + "\n";
 });
