@@ -1,7 +1,9 @@
-const Binance = require("node-binance-api");
-const binance = new Binance().options({
-  APIKEY: "ZoOcm5EPiASFtaGHcAq9HxB4p6vB1WdsZ7O7DQUP65jHGwEPjA2U7pIvQuj8AcF0",
-  APISECRET: "73LOExdmElqqRXI4mByzEV3FVrr9N05K8jSR04k1GP5q9zQEhnFbNqnklgePNqhL",
-});
+const api = require("binance");
 
-binance.websockets.bookTickers("BTCUSDT", console.log);
+const binanceWS = new api.BinanceWS(true); // Argument specifies whether the responses should be beautified, defaults to true
+
+binanceWS.onKline("BTCUSDT", "1m", (data) => {
+  console.log(data);
+  document.getElementById("test1").innerText +=
+    "به ملیون تومان  :" + data.kline.close * 24 + "\n";
+});
